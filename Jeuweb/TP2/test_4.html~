@@ -1,0 +1,44 @@
+<html>
+<meta charset="UTF-8" />
+<style type="text/css">
+#carre{
+	height: 80px;
+	width: 80px;
+	background: #ED0000;
+	position: absolute;
+}
+</style>
+<body>
+	<div id=carre></div>
+	<script typ e="text/javascript">
+		function pausecomp(millis) 
+		{
+			var date = new Date();
+			var curDate = null;
+			do { 
+				curDate = new Date(); 
+			} while(curDate-date < millis);
+		}
+		window.requestAnimationFrame = window.requestAnimationFrame ||					window.mozRequestAnimationFrame ||
+                              window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+                              
+
+		var elem = document.getElementById("carre");
+		var left = 0;
+		var lastFrame = 0;
+		
+		
+		function step() {
+				var now = new Date();
+				delay = now - lastFrame;
+				lastFrame = now;
+  				elem.style.left = ( left += 10) + "px";
+  				if (left < 400) {
+    				requestAnimationFrame(step);
+  				}
+		}
+		requestAnimationFrame(step);
+		
+	</script>
+</body>
+</html>

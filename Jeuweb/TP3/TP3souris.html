@@ -1,0 +1,148 @@
+<html>
+<meta charset="UTF-8" />
+<style type="text/css">
+</style>
+<body>
+<CANVAS WIDTH="1000" HEIGHT="700" ID="canvas" tabindex="0" style="border-style: solid; border-width: 2px; width: 1000px;">
+	<script type="text/javascript">
+	//	window.requestAnimationFrame = window.requestAnimationFrame ||					window.mozRequestAnimationFrame ||
+     //                         window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+                              
+		var canvas = document.getElementById("canvas");
+		document.getElementById("canvas").addEventListener("mousedown", doMouseDown,false);
+		var ctx = canvas.getContext('2d');
+		var img = new Image();
+		var x = 0;
+		var y = 0;
+		var objx = 0;
+		var objy = 0;
+		var absc = 300;
+		var ordo = 100;
+		var atteintX = false;
+		var atteintY = false;
+		img.src = 'hero_walk_cycle_spritesheet_by_mrnoobtastic-d3defej.png';
+		
+		
+		function doMouseDown(event){
+			var atteintX = false;
+			var atteintY = false;
+			objx = event.clientX;
+			objy = event.clientY;
+	      requestAnimationFrame(deplacementX);
+	      //requestAnimationFrame(deplacementY);
+  		}
+		
+		function deplacementX() {
+			if(absc<objx-10)
+   	    {
+   	     		setTimeout(function() {requestAnimationFrame(drawright)}, 100);
+   	    }
+   	     
+   	   if(absc>objx+10)
+   	    {
+   	     		setTimeout(function() {requestAnimationFrame(drawleft)}, 100);
+   	    }
+   	     
+   	   if(absc!=objx+10 || absc!=objx-10)
+   	   {
+   	   	requestAnimationFrame(deplacementX);
+   	   }
+		}
+		
+		function deplacementY() {
+   	   if(ordo<objy-100)
+   	    {
+   	     		setTimeout(function() {requestAnimationFrame(drawdown)}, 100);
+   	    }
+        
+   	   if(ordo>objy+100)
+   	    {
+   	     		setTimeout(function() {requestAnimationFrame(drawup)}, 100);
+   	    }
+   	     
+   	   if(ordo!=objy+100 || ordo!=objy-100)
+   	   {
+   	   	requestAnimationFrame(deplacementY);
+   	   }
+		}
+		
+		function clearCanvas() {
+			canvas.width = canvas.width;
+		}
+  		
+		function drawdown() {
+			if(ordo<=572)
+			{
+				clearCanvas();
+				y=256;
+				ctx.drawImage(img, x, y, 128, 128, absc, ordo, 128, 128);
+				if(x<384)
+				{
+					x = x + 128;
+					ordo= ordo + 10;
+				}
+				else
+				{
+					x = 0;
+				}
+			}
+		}
+		
+		function drawup() {
+			if(ordo>=-10)
+			{
+				clearCanvas();
+				y=384;
+				ctx.drawImage(img, x, y, 128, 128, absc, ordo, 128, 128);
+				if(x<384)
+				{
+					x = x + 128;
+					ordo= ordo - 10;
+				}
+				else
+				{
+					x = 0;
+				}
+			} 
+		}
+		
+		function drawleft() {
+			if(absc>=-30)
+			{
+				clearCanvas();
+				y=0;
+				ctx.drawImage(img, x, y, 128, 128, absc, ordo, 128, 128); 
+				if(x<384)
+				{
+					x = x + 128;
+					absc= absc-10;
+				}
+				else
+				{
+					x = 0;
+				}
+			}
+		}
+		
+		function drawright() {
+			if(absc<=900)
+			{
+				clearCanvas();
+				y=128;
+				ctx.drawImage(img, x, y, 128, 128, absc, ordo, 128, 128);
+				if(x<384)
+				{
+					x = x + 128;
+					absc = absc+10;
+				}
+				else
+				{
+					x = 0;
+				}
+			}
+		}
+		
+		setTimeout(function() {requestAnimationFrame(drawdown)}, 400);
+	</script>
+</body>
+</html>

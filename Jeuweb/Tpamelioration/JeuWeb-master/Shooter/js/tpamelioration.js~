@@ -310,7 +310,7 @@ var player = {
       this.tabCanvas2 = new Array();
       this.imgExplosion.onload = function () {
       	var h, offscreenCanvas2, offscreenContext2;
-      	for(h=0; h<10; h++)
+      	for(h=1; h<11; h++)
       	{
         		offscreenCanvas2 = document.createElement("canvas");
 				offscreenCanvas2.width = player.imgExplosionWidth;

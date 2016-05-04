@@ -1,0 +1,20 @@
+package ia.groupe_f;
+
+import modeles.actions.Action;
+import controle.Jeu;
+import ia.AbstractIA;
+
+public class Gotrek extends AbstractIA{
+
+	public Gotrek(String nom) {
+		super(nom);
+		
+	}
+
+	@Override
+	public Action choisirAction(Jeu p) {
+		p.clone();
+		return null;
+	}
+	 
+}
